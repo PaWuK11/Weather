@@ -26,6 +26,12 @@ body{
     justify-content: center;
 }
 
+.select{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .temp{
     font-size: 35px;
     font-weight: bold;
@@ -74,4 +80,8 @@ input.search-bar{
     visibility: visible;
     content: "Enter city name";
     color: white;
+}
+
+.hide{
+    visibility: hidden;
 }
