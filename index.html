@@ -3,46 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <script type='text/javascript' src='knockout-3.5.1.js'></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Weather Online</title>
 </head>
 <body>
 <div class="card">
-    <div class="form-check form-check-inline">
-        <input onclick="location.reload();" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-        <label class="form-check-label" for="inlineRadio1">Search</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input onclick="location.reload();" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-        <label class="form-check-label" for="inlineRadio2">Select</label>
+    <form class="data-picker">
+        <input id="days" class="flatpickr flatpickr-input active" type="datetime-local" placeholder="Select DataTime">
+    </form>
+    <script>
+        flatpickr("input[type=datetime-local]", {
+            minDate: "today",
+            maxDate: new Date().fp_incr(16),
+            altInput: true,
+            altFormat: "j F",
+        });
+    </script>
+    <div class="flex">
+        <div class="form-check form-check-inline">
+            <input onclick="location.reload();" class="form-check-input" type="radio" name="inlineRadioOptions"
+                   id="inlineRadio1" value="option1">
+            <label class="form-check-label" for="inlineRadio1">Search</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input onclick="location.reload();" class="form-check-input" type="radio" name="inlineRadioOptions"
+                   id="inlineRadio2" value="option2">
+            <label class="form-check-label" for="inlineRadio2">Select</label>
+        </div>
     </div>
     <div class="search hide">
-        <input type="text" placeholder="Search" class="search-bar">
-        <button>Search</button>
+            <input type="text" placeholder="Search" class="search-bar">
+            <button>Search</button>
     </div>
-    <div class="select hide">
-        <select id="citys" class="form-select form-select-lg mb-3 search-bar" aria-label=".form-select-lg example" style="background: #7c7c7c6b; color: white; outline: none; border-radius: 35px;">
+    <div class="select">
+        <select id="citys" class="form-select form-select-lg mb-3 search-bar" aria-label=".form-select-lg example"
+                style="background: #7c7c7c6b; color: white; outline: none; border-radius: 35px;">
             <option selected>Chose the city</option>
-            <option value="Kyiv">Kyiv</option>
-            <option value="Tokyo">Tokyo</option>
-            <option value="London">London</option>
+            <option>Kyiv</option>
+            <option>Kharkiv</option>
+            <option>Ternopil</option>
+            <option>Lviv</option>
+            <option>Zaporozhe</option>
+            <option>Vinitsa</option>
+            <option>Tokyo</option>
+            <option>London</option>
         </select>
         <button id="btn">Search</button>
+    </div>
+    <div class="carta" id="map">
+        <script src=
+                        "https://maps.googleapis.com/maps/api/js?key=AIzaSyCifcRE243an8791wyav94f9ZMHsts7wZ0&callback=initMap&libraries=&v=weekly"
+                async>
+        </script>
     </div>
 
     <div class="weather loading">
         <h2 class="city"></h2>
         <div class="temp"></div>
         <div class="flex">
-        <img src="" alt="" class="icon">
-        <div class="discription"></div>
+            <img class="icon">
+            <div class="description"></div>
         </div>
         <div class="wind"></div>
     </div>
 </div>
-
 <script src="main.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
 </body>
 </html>
